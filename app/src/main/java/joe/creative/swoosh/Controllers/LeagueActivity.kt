@@ -4,21 +4,22 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import joe.creative.swoosh.Utilities.EXTRA_LEAGUE
+import joe.creative.swoosh.Models.Player
+import joe.creative.swoosh.Utilities.EXTRA_PLAYER
 import joe.creative.swoosh.R
 import kotlinx.android.synthetic.main.activity_league.*
 
 class LeagueActivity : BaseActivity() {
-    var selectedLeague: String = ""
+    var player: Player = Player("", "")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_league)
     }
 
     fun leagueBtnClicked(view: View) {
-        if(!selectedLeague.isEmpty()) {
+        if(player.league != "" && player.league !== null) {
             val skillActivity = Intent(this, SkillActivity::class.java)
-            skillActivity.putExtra(EXTRA_LEAGUE, selectedLeague)
+            skillActivity.putExtra(EXTRA_PLAYER, player)
             startActivity(skillActivity)
         }
         else {
@@ -28,32 +29,32 @@ class LeagueActivity : BaseActivity() {
     }
 
     fun onMenClicked(view: View) {
-        if(!mensLeagueBtn.isChecked) selectedLeague = ""
+        if(!mensLeagueBtn.isChecked) player.league = ""
         else {
             womensLeagueBtn.isChecked = false
             coEdLeagueBtn.isChecked = false
 
-            selectedLeague = "Men"
+            player.league = "Men"
         }
     }
 
     fun onWomenClicked(view: View) {
-        if(!womensLeagueBtn.isChecked) selectedLeague = ""
+        if(!womensLeagueBtn.isChecked) player.league = ""
         else {
             coEdLeagueBtn.isChecked = false
             mensLeagueBtn.isChecked = false
 
-            selectedLeague = "Women"
+            player.league = "Women"
         }
     }
 
     fun onCoedClicked(view: View) {
-        if(!coEdLeagueBtn.isChecked) selectedLeague = ""
+        if(!coEdLeagueBtn.isChecked) player.league = ""
         else {
             womensLeagueBtn.isChecked = false
             mensLeagueBtn.isChecked = false
 
-            selectedLeague = "Coed"
+            player.league = "Coed"
         }
     }
 }
