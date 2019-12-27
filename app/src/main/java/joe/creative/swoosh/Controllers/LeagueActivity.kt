@@ -1,10 +1,11 @@
-package joe.creative.swoosh
+package joe.creative.swoosh.Controllers
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import joe.creative.swoosh.Utilities.EXTRA_LEAGUE
+import joe.creative.swoosh.R
 import kotlinx.android.synthetic.main.activity_league.*
 
 class LeagueActivity : BaseActivity() {
@@ -27,23 +28,32 @@ class LeagueActivity : BaseActivity() {
     }
 
     fun onMenClicked(view: View) {
-        womensLeagueBtn.isChecked = false
-        coEdLeagueBtn.isChecked = false
+        if(!mensLeagueBtn.isChecked) selectedLeague = ""
+        else {
+            womensLeagueBtn.isChecked = false
+            coEdLeagueBtn.isChecked = false
 
-        selectedLeague = "Men"
+            selectedLeague = "Men"
+        }
     }
 
     fun onWomenClicked(view: View) {
-        coEdLeagueBtn.isChecked = false
-        mensLeagueBtn.isChecked = false
+        if(!womensLeagueBtn.isChecked) selectedLeague = ""
+        else {
+            coEdLeagueBtn.isChecked = false
+            mensLeagueBtn.isChecked = false
 
-        selectedLeague = "Women"
+            selectedLeague = "Women"
+        }
     }
 
     fun onCoedClicked(view: View) {
-        womensLeagueBtn.isChecked = false
-        mensLeagueBtn.isChecked = false
+        if(!coEdLeagueBtn.isChecked) selectedLeague = ""
+        else {
+            womensLeagueBtn.isChecked = false
+            mensLeagueBtn.isChecked = false
 
-        selectedLeague = "Coed"
+            selectedLeague = "Coed"
+        }
     }
 }
